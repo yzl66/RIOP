@@ -24,6 +24,7 @@ from riop.trajectory import quintic_samples
 class RIOPNet(YopoNet):
     def __init__(self, settings, yopo_weight, refinement_weight, riop_config):
         self.riop_cfg = RIOPConfig.from_yaml(riop_config)
+        yopo_cfg["train"] = False
         if (self.riop_cfg.image_height, self.riop_cfg.image_width) != (yopo_cfg["image_height"], yopo_cfg["image_width"]):
             raise ValueError("RIOP and YOPO image dimensions differ")
         if abs(self.riop_cfg.segment_time - LatticePrimitive.get_instance().segment_time) > 0.02:
